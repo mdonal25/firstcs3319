@@ -1,0 +1,68 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+CLASSROOM3
+mdonal25assign2db
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS mdonal25assign2db
+--------------
+
+--------------
+CREATE DATABASE mdonal25assign2db
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE agent (agentid CHAR(2) NOT NULL, firstname CHAR(30), lastname CHAR(30), city CHAR(15), commission TINYINT, PRIMARY KEY (agentid))
+--------------
+
+--------------
+CREATE TABLE customer (customerid CHAR(2) NOT NULL, agentid CHAR(2) NOT NULL, firstname CHAR(30), lastname CHAR(30), city CHAR(15), phonenumber CHAR(8), PRIMARY KEY (customerid), FOREIGN KEY (agentid) REFERENCES agent (agentid))
+--------------
+
+--------------
+CREATE TABLE product (productid CHAR(2) NOT NULL, description CHAR(20), costperitem FLOAT, quantity INT, PRIMARY KEY (productid))
+--------------
+
+--------------
+CREATE TABLE isboughtby (productid CHAR(2) NOT NULL, customerid CHAR(2) NOT NULL, quantity INT,FOREIGN KEY (productid) REFERENCES product(productid), FOREIGN KEY (customerid) REFERENCES customer(customerid))
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+Tables_in_mdonal25assign2db
+agent
+customer
+isboughtby
+product

@@ -1,0 +1,31 @@
+USE mdonal25assign2db;
+-- Query 1
+SELECT description FROM product;
+-- Query 2
+SELECT DISTINCT city FROM customer;
+-- Query 3
+SELECT * FROM agent ORDER BY city;
+-- Query 4
+SELECT firstname, lastname FROM customer WHERE city='Springfield';
+-- Query 5
+SELECT lastname FROM customer WHERE agentid=(SELECT agentid FROM agent WHERE firstname='Regis');
+-- Query 6
+SELECT description FROM product WHERE description LIKE '%pad%' OR '%Pad%';
+-- Query 7
+SELECT lastname, description, isboughtby.quantity FROM customer, product, isboughtby WHERE customer.customerid=isboughtby.customerid AND product.productid= isboughtby.productid;
+-- Query 8
+SELECT SUM(quantity) AS "Homer's Total Purchases" FROM isboughtby WHERE customerid=(SELECT customerid FROM customer WHERE firstname='Homer');
+-- Query 9
+SELECT firstname, lastname, SUM(quantity) FROM customer, isboughtby WHERE customer.customerid=isboughtby.customerid GROUP BY isboughtby.customerid;
+-- Query 10
+SELECT description, quantity FROM product WHERE productid NOT IN (SELECT productid FROM isboughtby);
+-- Query 11
+SELECT description, quantity FROM product WHERE productid NOT IN (SELECT productid FROM isboughtby WHERE customerid=(SELECT customerid FROM customer WHERE firstname= 'Fred' AND lastname='Flintstone'));
+-- Query 12
+SELECT agent.firstname, agent.lastname, customer.firstname, customer.lastname FROM agent,customer WHERE agent.agentid= customer.agentid AND agent.city=customer.city;
+-- Query 13
+SElECT SUM(quantity) AS "Total Knee Pads Purchased" FROM isboughtby WHERE productid=(SELECT productid FROM product WHERE description ='Knee Pads');
+-- Query 14
+SELECT description FROM product WHERE productid IN(SELECT isboughtby.productid FROM product, isboughtby WHERE product.productid=isboughtby.productid GROUP BY productid HAVING COUNT(*) >=3);
+-- Query 15
+SELECT firstname,lastname FROM agent WHERE agentid IN(SELECT agentid FROM customer WHERE customerid IN(SELECT customerid FROM isboughtby WHERE productid=78));

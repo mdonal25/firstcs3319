@@ -1,0 +1,12 @@
+USE mdonal25assign2db;
+SELECT * FROM agent;
+SELECT * FROM product;
+SELECT * FROM customer;
+SELECT * FROM isboughtby;
+CREATE VIEW view1 AS SELECT customer.firstname as firstname, customer.lastname as lastname, product.description as description, isboughtby.quantity as quantity, product.costperitem as cost, product.costperitem * isboughtby.quantity as total FROM customer, product, isboughtby WHERE customer.customerid= isboughtby.customerid AND product.productid= isboughtby.productid ORDER BY lastname;
+SELECT * FROM view1;
+SELECT * FROM view1 WHERE total>100;
+DELETE FROM product WHERE description='Skateboard';
+SELECT * FROM product;
+DELETE FROM agent WHERE city='Springfield';
+-- Hugh Grant id 99 from Springfield could not be deleted as the agent id is a foreign key used in the customer table. This attribute in the customer table cannot be null.
