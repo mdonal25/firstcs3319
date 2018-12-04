@@ -1,0 +1,29 @@
+/*CSS style sheet*/
+.title{
+color:orange;
+font-size: 32px;
+text-align: center;
+}
+
+/*Navagation bar CSS code snippet from w3 schools */
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: coral;
+    top: 35;
+    width: 100%;
+}
+.navbar1{
+    float:left;
+  
+}
+.navbar1  a {
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 16px 16px;
+    text-decoration: none;
+}
+
